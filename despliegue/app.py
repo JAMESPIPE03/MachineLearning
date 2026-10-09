@@ -1,5 +1,6 @@
 import json
 from datetime import date, time, datetime
+from pathlib import Path
 
 import joblib
 import numpy as np
@@ -8,11 +9,13 @@ import streamlit as st
 
 st.set_page_config(page_title='Pronóstico de demanda eléctrica', page_icon='⚡', layout='centered')
 
+CARPETA = Path(__file__).parent
+
 
 @st.cache_resource
 def cargar():
-    modelo = joblib.load('modelo_demanda.joblib')
-    with open('metadatos_modelo.json', encoding='utf-8') as f:
+    modelo = joblib.load(CARPETA / 'modelo_demanda.joblib')
+    with open(CARPETA / 'metadatos_modelo.json', encoding='utf-8') as f:
         meta = json.load(f)
     return modelo, meta
 
