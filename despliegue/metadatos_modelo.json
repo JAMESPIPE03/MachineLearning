@@ -1,0 +1,37 @@
+{
+  "modelo": "SVR",
+  "hiperparametros": {
+    "modelo__regressor__C": "1",
+    "modelo__regressor__epsilon": "0.1",
+    "modelo__regressor__kernel": "linear"
+  },
+  "metricas_prueba": {
+    "MAE (MW)": 15.3733,
+    "MAPE (%)": 1.684,
+    "RMSE (MW)": 19.0815,
+    "R2": 0.9815
+  },
+  "linea_base_hora_anterior": {
+    "MAE (MW)": 15.2848,
+    "MAPE (%)": 1.6771,
+    "RMSE (MW)": 19.1527,
+    "R2": 0.9813
+  },
+  "features": [
+    "PreviousDemand",
+    "Temperature",
+    "Humidity",
+    "Hour_sin",
+    "Hour_cos",
+    "IsHoliday",
+    "IsWeekend",
+    "DayOfWeek",
+    "Month"
+  ],
+  "registros_entrenamiento": 1748,
+  "periodo": [
+    "2023-01-01",
+    "2023-03-25"
+  ],
+  "scikit_learn": "1.9.1"
+}

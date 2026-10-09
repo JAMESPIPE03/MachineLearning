@@ -1,0 +1,30 @@
+Historical electricity consumption for a region. Goal: predict energy demand (MW).
+
+INTENTIONAL DATA QUALITY ISSUES:
+- DateTime stored as text (DD/MM/YYYY HH:MM) — convert to datetime
+- Missing values in Temperature, Humidity, PreviousDemand, Season
+- Outliers in Temperature and EnergyDemand (negative / extreme MW)
+- Noise/ID columns: RecordID, FullName, Phone, ZodiacSign, FavoriteColor, Hobby
+- Redundant: Temperature_F vs Temperature
+- Near-constant: Country (~97% Colombia)
+- Hour stored as float (e.g. 8.0)
+- TARGET LEAKAGE risk: PeakHourFlag is derived from demand level — remove for honest prediction
+- Different scales (Hour vs PreviousDemand vs Humidity)
+
+* DATA (predictors):
+- RecordID, FullName, Phone, ZodiacSign, FavoriteColor, Hobby: irrelevant / noise
+- DateTime: Timestamp as text (convert to datetime64)
+- Temperature: Temperature in Celsius
+- Temperature_F: Temperature in Fahrenheit (redundant with Temperature)
+- Humidity: Relative humidity %
+- IsHoliday: 1 if holiday, 0 otherwise
+- DayOfWeek: 0=Monday .. 6=Sunday
+- Hour: Hour of day (float due to null handling practice)
+- Month: Month number 1-12
+- PreviousDemand: Demand of previous period
+- Season: Winter / Spring / Summer / Fall
+- Country: Country (near-constant — candidate for removal)
+- PeakHourFlag: Binary flag correlated with high demand (target leakage — remove)
+
+* TARGET:
+- EnergyDemand: Energy demand in MW 
